@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101c20"><title>Digi Garden — Raise a little chaos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+<header><a class="brand" href="./index.html" aria-label="Digi Garden home"><span class="brand-icon">✦</span> DIGI<span class="slash">//</span>GARDEN <span class="demo">DEMO 01</span></a><div class="header-actions"><button id="sound" class="quiet" aria-label="Turn sound on" aria-pressed="false">♫ <span>Sound off</span></button><button id="reset" class="quiet" aria-label="New partner: reset progress">↻ <span>New partner</span></button></div></header>
+<main>
+<div class="intro"><div><div class="eyebrow"><span class="status-dot"></span> YOUR POCKET-SIZED DIGITAL WORLD</div><h1>Raise a little <em>chaos.</em></h1><p>Feed. Train. Digivolve. Make a legend out of a little guy.</p></div><div class="session"><span>LOCAL SESSION</span><strong id="record">00 W / 00 L</strong></div></div>
+<div class="game-grid">
+<section class="habitat" aria-label="Digital habitat and battle arena">
+<div class="scene-top"><span class="location"><span class="status-dot"></span> <span id="location">FILE ISLAND / NURSERY</span></span><span id="scene-mode">LIVE HABITAT <span class="blink">●</span></span></div>
+<canvas id="scene" width="960" height="530" aria-label="Koromon resting in a pixel art forest"></canvas>
+<div id="scene-label" class="scene-label"><span id="mood">A tiny creature. A huge appetite.</span><strong id="floating-name">KOROMON <span>LV. 01</span></strong></div>
+<div id="battle-hud" class="battle-hud" hidden><div><span id="player-label">YOUR PARTNER</span><strong id="player-hp"></strong><progress id="player-health" max="100" value="100" aria-label="Partner battle health"></progress></div><div><span>RIVAL / BLACKAGUMON</span><strong id="enemy-hp"></strong><progress id="enemy-health" max="100" value="100" aria-label="Rival battle health"></progress></div></div>
+<div id="announcement" class="announcement" hidden></div>
+<div class="scene-bottom"><span><i></i> <span id="scene-status">SAFE ZONE · GROW AT YOUR OWN PACE</span></span><span>デジタルガーデン</span></div>
+</section>
+<aside class="console">
+<div class="card-eyebrow"><span id="panel-label">YOUR PARTNER</span><span id="stage-badge" class="badge">IN-TRAINING</span></div>
+<div class="partner-heading"><h2 id="partner-name">Koromon</h2><span id="element">✦ FREE</span></div>
+<p id="partner-description" class="description">Mostly ears. Entirely potential.</p>
+<div id="care-panel">
+<div class="stats"><div class="stat"><div><span>♥ Fullness</span><strong id="fullness-value">60<span>/100</span></strong></div><progress id="fullness" value="60" max="100" aria-label="Fullness"></progress></div><div class="stat"><div><span>ϟ Power</span><strong id="power-value">12</strong></div><progress id="power" value="12" max="100" aria-label="Power"></progress></div><div class="stat"><div><span>✧ Bond</span><strong id="bond-value">10<span>/100</span></strong></div><progress id="bond" value="10" max="100" aria-label="Bond"></progress></div></div>
+<div class="growth"><div><span id="growth-label">NEXT: AGUMON</span><strong id="growth-count">0 / 3 XP</strong></div><div id="growth-pips" class="pips"></div><p id="growth-hint">Every meal and training brings you closer.</p></div>
+<div class="care-actions"><button id="feed" class="action"><span class="action-icon">◒</span><strong>Feed</strong><small>+ fullness & bond</small><kbd>F</kbd></button><button id="train" class="action"><span class="action-icon">ϟ</span><strong>Train</strong><small>+ power · − fullness</small><kbd>T</kbd></button></div>
+</div>
+<div id="battle-panel" hidden><div class="enemy-intent"><span>RIVAL'S NEXT MOVE</span><strong id="intent">Claw swipe</strong><p id="intent-hint">Keep an eye on its next attack.</p></div><div class="battle-actions"><button id="attack" class="battle-action"><span>01</span> Attack <small>Reliable damage</small></button><button id="guard" class="battle-action"><span>02</span> Guard <small>Block 80% + heal</small></button><button id="burst" class="battle-action"><span>03</span> Mega flame <small id="burst-label">Charging 0 / 3</small></button></div><button id="return" class="primary" hidden>Back to the garden ↗</button></div>
+<div class="activity" role="status" aria-live="polite"><span>↳</span><p id="message">Hey, tamer. Your story starts with a snack.</p></div>
+</aside>
+</div>
+<section class="journey" aria-label="Evolution journey"><div class="journey-title"><span class="eyebrow">A LITTLE CARE. A BIG TRANSFORMATION.</span><h3>The glow-up path</h3></div><div class="evolution-track"><div class="evolution current" id="evo-0"><canvas width="90" height="80" data-sprite="0" aria-hidden="true"></canvas><div><span>01 / IN-TRAINING</span><strong>Koromon</strong><small>YOU ARE HERE</small></div></div><span class="path-arrow">→</span><div class="evolution locked" id="evo-1"><canvas width="90" height="80" data-sprite="1" aria-hidden="true"></canvas><div><span>02 / ROOKIE</span><strong>Agumon</strong><small>3 CARE XP</small></div></div><span class="path-arrow">→</span><div class="evolution locked" id="evo-2"><canvas width="90" height="80" data-sprite="2" aria-hidden="true"></canvas><div><span>03 / CHAMPION</span><strong>Greymon</strong><small>8 CARE XP</small></div></div></div></section>
+<section class="arena-invite"><div class="arena-icon">⚔</div><div><span class="eyebrow">THE TRAINING GROUND</span><h3>A rival is waiting.</h3><p id="arena-hint">Reach Rookie to unlock your first battle. Champion gives you the edge.</p></div><button id="battle" class="primary" disabled>Battle locked <span>↗</span></button></section>
+</main><footer><span>MADE OF PIXELS & POTENTIAL.</span><span>Unofficial fan demo · No save files. Just good times.</span><span>F FEED <b>·</b> T TRAIN <b>·</b> B BATTLE</span></footer>
+</div><script src="script.js"></script>
+</body></html>

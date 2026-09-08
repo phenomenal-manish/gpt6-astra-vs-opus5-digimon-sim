@@ -1,0 +1,43 @@
+async () => {
+  const $ = id => document.getElementById(id), results = [];
+  const check = (condition, text) => { if (!condition) throw new Error(text); results.push(text); };
+  const pause = () => new Promise(r => setTimeout(r, 780));
+  const care = async kind => { $(kind).click(); await pause(); };
+  $('reset').click();
+  check($('battle').disabled, 'New partner starts with battle locked');
+  await care('feed'); await care('train'); await care('train');
+  check($('partner-name').textContent === 'Agumon' && !$('announcement').hidden, 'Three care actions trigger visible Rookie reveal');
+  $('continue').click();
+  check(!$('battle').disabled, 'Rookie unlocks battle');
+  $('battle').click();
+  for (let i = 0; i < 10 && $('announcement').hidden; i++) { $('attack').click(); await pause(); }
+  check($('announcement').textContent.includes('Knocked out.'), 'Unprepared Rookie can lose battle');
+  check($('record').textContent === '00 W / 01 L', 'Loss recorded exactly once');
+  $('result-return').click();
+  check($('partner-name').textContent === 'Agumon' && !$('care-panel').hidden, 'Loss returns to raising with evolution preserved');
+  for (const kind of ['feed','train','train','feed','train']) await care(kind);
+  check($('partner-name').textContent === 'Greymon' && !$('announcement').hidden, 'Eight care actions trigger visible Champion reveal');
+  $('continue').click(); $('battle').click();
+  const initialHP = $('player-health').value;
+  $('attack').click(); $('attack').click(); await pause();
+  check($('player-health').value === initialHP - 18, 'Repeated clicks do not create extra turns');
+  $('attack').click(); await pause();
+  check($('intent').textContent.includes('Pepper Breath'), 'Third rival attack is visibly telegraphed');
+  const hp = $('player-health').value;
+  $('guard').click(); await pause();
+  check($('player-health').value === hp, 'Guard heals 8 and reduces heavy attack from 38 to 8');
+  check(!$('burst').disabled, 'Three commands charge special move');
+  $('burst').click(); await pause();
+  check($('announcement').textContent.includes('Victory!'), 'Trained Champion wins using attack, guard, and special');
+  check($('record').textContent === '01 W / 01 L', 'Both win and loss recorded');
+  $('result-return').click();
+  for (let i=0; i<7; i++) await care('train');
+  check($('fullness').value >= 0 && $('train').disabled, 'Low fullness blocks training without negative stats');
+  await care('feed');check(!$('train').disabled, 'Feeding restores ability to train');
+  $('battle').click(); $('attack').click(); $('reset').click(); await pause();
+  check($('partner-name').textContent === 'Koromon' && $('record').textContent === '00 W / 00 L' && $('battle-panel').hidden, 'Reset during enemy delay cancels stale battle callback');
+  $('feed').click(); $('reset').click(); await pause();
+  check($('growth-count').textContent === '0 / 3 XP' && $('announcement').hidden, 'Reset during care cancels stale evolution callback');
+  check(document.documentElement.scrollWidth <= innerWidth, 'No horizontal overflow');
+  return {passed: results.length, results};
+}
