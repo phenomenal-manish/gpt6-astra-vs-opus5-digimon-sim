@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digilab — raise a digital monster</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="device">
+  <span class="screw screw--tl" aria-hidden="true"></span>
+  <span class="screw screw--tr" aria-hidden="true"></span>
+  <span class="screw screw--bl" aria-hidden="true"></span>
+  <span class="screw screw--br" aria-hidden="true"></span>
+
+  <header class="brand">
+    <span class="brand__mark">Digilab</span>
+    <span class="brand__unit">unit 01</span>
+    <button id="mute" class="mute" type="button" aria-pressed="false">Sound on</button>
+  </header>
+
+  <div class="bezel">
+    <canvas id="stage" width="256" height="160"
+            aria-label="Your digital monster on its stage"></canvas>
+    <span class="bezel__glare" aria-hidden="true"></span>
+  </div>
+
+  <section class="lcd" aria-live="polite">
+    <div class="lcd__id">
+      <span id="c-name" class="lcd__name">Digi-Egg</span>
+      <span id="c-stage" class="lcd__tag">Egg</span>
+      <span id="c-record" class="lcd__record">0 wins</span>
+    </div>
+
+    <ul class="chips">
+      <li><b id="s-pwr">2</b><span>Power</span></li>
+      <li><b id="s-grd">2</b><span>Guard</span></li>
+      <li><b id="s-spd">2</b><span>Speed</span></li>
+    </ul>
+
+    <div class="meters">
+      <div class="meter">
+        <span class="meter__k">Health</span>
+        <span class="meter__track"><i id="m-hp" style="width:100%"></i></span>
+        <span class="meter__v" id="v-hp">20/20</span>
+      </div>
+      <div class="meter">
+        <span class="meter__k">Energy</span>
+        <span class="meter__track"><i id="m-en" style="width:100%"></i></span>
+        <span class="meter__v" id="v-en">100</span>
+      </div>
+      <div class="meter">
+        <span class="meter__k">Fed</span>
+        <span class="pips" id="m-full"></span>
+        <span class="meter__v" id="v-full">3/5</span>
+      </div>
+      <div class="meter meter--evo">
+        <span class="meter__k">Growth</span>
+        <span class="meter__track"><i id="m-xp" style="width:0%"></i></span>
+        <span class="meter__v" id="v-xp">0/20</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="log" id="log">
+    <p class="log__now">A Digi-Egg landed on the plain. Feed it.</p>
+  </div>
+
+  <div class="pad">
+    <button class="btn" type="button" data-act="feed"><kbd>1</kbd>Feed</button>
+    <button class="btn" type="button" data-act="rest"><kbd>2</kbd>Rest</button>
+    <button class="btn btn--fight" type="button" data-act="battle" disabled><kbd>B</kbd>Battle</button>
+
+    <div class="train">
+      <span class="train__k">Train</span>
+      <button class="btn btn--sm" type="button" data-act="train:pwr"><kbd>3</kbd>Power</button>
+      <button class="btn btn--sm" type="button" data-act="train:grd"><kbd>4</kbd>Guard</button>
+      <button class="btn btn--sm" type="button" data-act="train:spd"><kbd>5</kbd>Speed</button>
+    </div>
+
+    <button class="btn btn--evolve" type="button" data-act="evolve" hidden>Digivolve</button>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
